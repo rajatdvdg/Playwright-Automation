@@ -2,7 +2,8 @@
 
 module.exports = {
     loginPageUrl: '/#/login',
-    newChatBotUrl: '/#/chatbot',
-    pdfFile: '../assets/Einstein_Theory_of_Relativity_compressed.txt',
-    txtFile: '../assets/comprehension.txt'
+    newChatBotUrl: '/#/new',
+    pdfFile: 'assets/Einstein_Theory_of_Relativity_compressed.pdf',
+    txtFile: 'assets/comprehension.txt',
+    webpageUrl: 'https://www.geeksforgeeks.org/'
   };

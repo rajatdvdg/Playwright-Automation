@@ -19,4 +19,4 @@ class Login{
     }
 }
 
-module.exports = {Login};
+module.exports = { Login };

@@ -1,5 +1,9 @@
 const { test, expect } = require('@playwright/test');
 const { setupPage } = require('../../utils/utils');
+const { Dashboard } = require('../../page-objects/dashboard.page');
+const config = require('../../config/test-config');
+const globalConfig = require('../../playwright.config');
+
 
 test.describe('Create ChatBot tests', () => {
   let page;
@@ -8,39 +12,30 @@ test.describe('Create ChatBot tests', () => {
     page = await setupPage(browser);
   });
   
-  test('should be able to create WebPage Bot', async () => {
-    console.log('Success');
+  test('should be able to create Webpage Bot', async () => {
+    const dashboard = new Dashboard(page);
+    await dashboard.navigate();
+    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
+    await dashboard.createBot('Webpage');
+    await dashboard.verifyBotCreation();
+    await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
+  });
+
+  test('should be able to create Text Bot', async () => {
+    const dashboard = new Dashboard(page);
+    await dashboard.navigate();
+    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
+    await dashboard.createBot('Text');
+    await dashboard.verifyBotCreation();
+    await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
+  });
+
+  test('should be able to create PDF Bot', async () => {
+    const dashboard = new Dashboard(page);
+    await dashboard.navigate();
+    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
+    await dashboard.createBot('Pdf');
+    await dashboard.verifyBotCreation();
+    await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
   });
 });
-
-
-/* test('should create webpage bot successfully', async ({ page }) => {
-    
-  await page.getByRole('link', { name: 'Create new bot' }).click();
-  await expect(page).toHaveURL('https://starfishaptly.eastus.cloudapp.azure.com/#/new');
-
-  await page.locator('[id="headlessui-radiogroup-option-\\:r4\\:"]').click();
-
-  await page.getByPlaceholder('Enter the webpage URL').fill('https://www.geeksforgeeks.org');
-
-  await page.getByRole('button', { name: 'Create' }).click();
-
-  await page.locator('a:nth-child(6)').click();
-
-  const projectName = await page.inputValue('#name');
-  console.log('Project Name is ', projectName);
-
-  await page.click('//a[@href="#/"]');
-
-  await page.waitForTimeout(1000);
-
-  const links = await page.$$('h3');
-
-  expect(links.includes(projectName));
-
-  await page.getByRole('link', { name: projectName }).click();
-
-  await page.getByPlaceholder('Type a message...').fill('What is Geeks for Geeks?');
-  
-  await page.getByRole('button', { name: 'Send' }).click();
-})*/
