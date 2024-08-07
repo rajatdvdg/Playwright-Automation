@@ -5,7 +5,7 @@ class Login{
         this.page = page;
         this.usernameInput = '#username';
         this.passwordInput = '#password';
-        this.loginButton = 'text=Login';
+        this.loginButton = 'button[type="submit"]';
     }
 
     async navigate()    {

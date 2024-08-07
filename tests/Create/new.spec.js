@@ -2,15 +2,16 @@ const { test, expect } = require('@playwright/test');
 const { setupPage } = require('../../utils/utils');
 
 test.describe('Create ChatBot tests', () => {
+  let page;
 
-    test.beforeEach(async ({ browser }) => {
-      page = await setupPage(browser);
-    });
-  
-    test('should be able to create WebPage Bot', async () => {
-      console.log('Success');
-    });
+  test.beforeEach(async ({ browser }) => {
+    page = await setupPage(browser);
   });
+  
+  test('should be able to create WebPage Bot', async () => {
+    console.log('Success');
+  });
+});
 
 
 /* test('should create webpage bot successfully', async ({ page }) => {

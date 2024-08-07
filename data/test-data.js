@@ -3,4 +3,9 @@ module.exports = {
       username: 'admin',
       password: 'admin',
     },
+
+    invalidCredentials: {
+      username: 'testinguser',
+      password: 'password',
+    },
   };
