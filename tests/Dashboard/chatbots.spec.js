@@ -64,4 +64,23 @@ test.describe('Create ChatBot tests', () => {
     //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
   });
 
+  test('should be able to create crawler Bot', async ({page}) => {
+    const dashboard = new Dashboard(page);
+    await dashboard.navigate();
+    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
+    await dashboard.createBot('crawler');
+    await dashboard.verifyBotCreation();
+    //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });   
+  });
+
+  test('should be able to create youtube Bot', async ({page}) => {
+    const dashboard = new Dashboard(page);
+    await dashboard.navigate();
+    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
+    await dashboard.createBot('youtube');
+    await dashboard.verifyBotCreation();
+    //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });   
+  });
+  
+
 });

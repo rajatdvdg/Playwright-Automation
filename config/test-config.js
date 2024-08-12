@@ -9,5 +9,7 @@ module.exports = {
     txtFile: 'assets/comprehension.txt',
     docxFile: 'assets/apiDoc.docx',
     csvFile: 'assets/org.csv',
-    webpageUrl: 'https://www.geeksforgeeks.org/'
+    crawlerUrl: 'https://www.geeksforgeeks.org/',
+    webpageUrl: 'https://www.geeksforgeeks.org/',
+    youtubeUrl: 'https://www.youtube.com/watch?v=AEsf7QmIJTQ&t=2s',
   };

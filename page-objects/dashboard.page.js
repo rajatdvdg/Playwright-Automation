@@ -9,6 +9,8 @@ class Dashboard{
         this.webpageType = 'text=Webpage';
         this.textType = 'text=Text';
         this.fileType = 'text=File';
+        this.crawlerType = 'text=Crawler';
+        this.youtubeType = 'text=Youtube';
         this.inputContent = '#content';
         this.createButton = 'button[type="submit"]';
         this.inputFile = '#file';
@@ -58,6 +60,18 @@ class Dashboard{
                 await this.page.click(this.fileType);
                 fileInput = await this.page.$(this.inputFile);
                 await fileInput.setInputFiles(config.csvFile);
+                await this.page.click(this.createButton);
+                break;
+
+            case 'crawler':
+                await this.page.click(this.crawlerType);
+                await this.page.fill(this.inputContent, config.crawlerUrl);
+                await this.page.click(this.createButton);
+                break;
+
+            case 'youtube':
+                await this.page.click(this.youtubeType);
+                await this.page.fill(this.inputContent, config.youtubeUrl);
                 await this.page.click(this.createButton);
                 break;
         }
