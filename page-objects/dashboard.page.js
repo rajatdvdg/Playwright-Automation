@@ -25,26 +25,39 @@ class Dashboard{
     }
 
     async createBot(botType) {
-        
+        let fileInput = null;
         switch(botType) {
-            case 'Webpage':
+            case 'webpage':
                 await this.page.click(this.webpageType);
                 await this.page.fill(this.inputContent, config.webpageUrl);
                 await this.page.click(this.createButton);
                 break;
 
-            case 'Text':
+            case 'text':
                 const text = fs.readFileSync(config.txtFile, 'utf-8');
                 await this.page.click(this.textType);
                 await this.page.fill(this.inputContent, text);
                 await this.page.click(this.createButton);
                 break;
             
-            case 'Pdf':
+            case 'pdf':
                 await this.page.click(this.fileType);
-                const fileInput = await this.page.$(this.inputFile);
+                fileInput = await this.page.$(this.inputFile);
                 await fileInput.setInputFiles(config.pdfFile);
-                //await this.page.fill(this.inputContent, text);
+                await this.page.click(this.createButton);
+                break;
+            
+            case 'docx':
+                await this.page.click(this.fileType);
+                fileInput = await this.page.$(this.inputFile);
+                await fileInput.setInputFiles(config.docxFile);
+                await this.page.click(this.createButton);
+                break;
+            
+            case 'csv':
+                await this.page.click(this.fileType);
+                fileInput = await this.page.$(this.inputFile);
+                await fileInput.setInputFiles(config.csvFile);
                 await this.page.click(this.createButton);
                 break;
         }

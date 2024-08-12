@@ -1,0 +1,73 @@
+﻿Employee Number,Display Name,Job Title,Department,Location,Reportees Count
+ATIND007,Praneeth Naga,Delivery Lead,VMWare,Hyderabad,0
+ATIND008,Rahul Vilas Nikate,Software Development Engineer,Software,Hyderabad,0
+ATIND010,Akash Vyas,Recruiting Director,Recruitment US,Gujarat,12
+ATIND018,Manjula Rani,VMWareEngineer,VMWare,Hyderabad,0
+ATIND020,Ravindra Babu Munagala,VMWareEngineer,VMWare,Hyderabad,0
+ATIND021,Sivananda Reddy,VMWareEngineer,VMWare,Hyderabad,0
+ATIND023,Munasir Ahmed,VMWareEngineer,VMWare,Hyderabad,0
+ATIND035,Vineeta Nakka,VMWare Team lead,VMWare,Hyderabad,0
+ATIND036,Goveswara Reddy,Network Engineer Lead,Networking,Hyderabad,0
+ATIND039,Pallem Preetham Reddy,VMWareEngineer,VMWare,Hyderabad,0
+ATIND041,Geddam Santhi Madhuri,VMWareEngineer,VMWare,Hyderabad,0
+ATIND049,Kanjeevaram Ravishanker,VMWareEngineer,VMWare,Hyderabad,0
+ATIND094,Sujeet Kumar Tripathi,VP Of Engineering,Project manager,Hyderabad,68
+ATINDB,Blake Kiltoff,Project Manager,Project manager,Hyderabad,61
+2,Admin,Project Manager,Project manager,Hyderabad,31
+ATIND052,Appireddigari Praveen Kumar Reddy,VMware Engineer,VMWare,Hyderabad,0
+ATIND053,Mohd Shadab Hussain,Azure Engineer,Software,Hyderabad,0
+ATIND056,Gadekari Mahendra,VMware Engineer,VMWare,Hyderabad,0
+ATIND057,C P Prasad reddy,VMware Engineer,VMWare,Hyderabad,0
+ATIND058,Mudiyala Lakshmi Narayana Reddy,VMware Engineer,VMWare,Hyderabad,0
+ATIND059,Takkalapalli Divya,VMWareEngineer,VMWare,Hyderabad,0
+ATIND063,Nilesh Bharat Kale,VMWareEngineer,VMWare,Hyderabad,0
+ATIND064,Sudheer Kumar vakamullu,Network Engineer,Networking,Hyderabad,0
+ATIND065,Pulicherla Muneiah,VMWareEngineer,Software,Hyderabad,0
+ATIND066,samya Mannuru,VMWareEngineer,VMWare,Hyderabad,0
+ATIND068,K Naveen Kumar,Network Engineer,Networking,Hyderabad,0
+ATIND070,Aditya Pavan Datla,Azure Engineer,Software,Hyderabad,0
+ATIND074,Sairam Pathanaboina,VMWareEngineer,VMWare,Hyderabad,0
+ATIND083,Abhilash Teja Katte,Azure Engineer,Software,Hyderabad,0
+ATIND084,Sri Harsha Sappa,Azure Monitoring Engineer,Software,Hyderabad,0
+ATIND087,Shaik Abdul Amjad,Azure Monitoring Engineer,Azure Engineer,Hyderabad,0
+ATIND0104,Zakir Mohammed Haneefa,NSX Engineer,Software,Hyderabad,0
+ATIND0116,Jaya Kumar Reddy Elupuru,Software Engineer Lead,Software,Hyderabad,7
+ATIND0120,R Navya,VMWareEngineer,VMWare,Hyderabad,0
+ATIND0121,Damodaram Appichi,VMWareEngineer,VMWare,Hyderabad,0
+ATIND0122,Prince Yadav,NSX Engineer,VMWare,Hyderabad,0
+ATIND0132,Lakshman Rao Ede,NSX Engineer,Networking,Hyderabad,0
+ATIND0133,Koteswara Rao,VMWareEngineer,VMWare,Hyderabad,0
+ATIND0134,Shaik Ali Ahamed,Network Engineer,Networking,Hyderabad,0
+ATIND0136,Rajat Devadiga,Tester,Testing,Hyderabad,0
+ATIND0138,Gururaj Bhimana Kunta,Tester,Testing,Hyderabad,0
+ATIND0142,Mohit Menda,Devops Engineer,Azure Engineer,Hyderabad,0
+ATIND0143,Mohammed Abdul Moyeed,Devops Engineer,Azure Engineer,Hyderabad,0
+ATIND0144,Munish Sharma,VMWareEngineer,VMWare,Hyderabad,0
+ATIND0146,Krishna Prasad Atava,Azure DevOps Role,Azure Engineer,Hyderabad,0
+ATIND0147,Anusha Thalla,Azure Devops Engineer,Azure Engineer,Hyderabad,0
+ATIND0149,Srinu Panjala,Azure Devops Engineer,Azure Engineer,Hyderabad,0
+ATIND0150,Lakshmana Raju,Azure Devops Engineer,Azure Engineer,Hyderabad,0
+ATIND0152,Thrishul Kandukuri,Manual Test Engineer,Testing,Hyderabad,0
+ATIND0153,Harshitha Allu,VMware Engineer,VMWare,Hyderabad,0
+ATIND0154,Sushant Suresh Gaikwad,VMware Engineer,VMWare,Hyderabad,0
+ATIND0155,Srija Nataraj,VMWareEngineer,VMWare,Hyderabad,0
+ATIND0156,Uday Kumar Kasula,Azure Devops Engineer,Azure Engineer,Hyderabad,0
+ATIND0159,Gunda sivakasi,Network Engineer,Networking,Hyderabad,0
+ATIND0160,Priyanka M,VMWareEngineer,VMWare,Hyderabad,0
+ATIND0161,Madhavi Latha Mylapuru,VMWareEngineer,VMWare,Hyderabad,0
+ATIND0162,Shailesh Kumar,Azure DevOps Role,Software,Hyderabad,0
+ATIND0165,Suresh Reddy Palagiri,NSX Engineer,Software,Hyderabad,0
+ATIND0166,Sai Veerendra,Network Engineer,Networking,Hyderabad,0
+ATIND0167,Gopi Jammula,Azure Devops Engineer,Azure Engineer,Hyderabad,0
+ATIND0171,Mohammad Ismail Syed,Network Engineer,Networking,Hyderabad,0
+ATIND0175,Aswini Kampiri,Network Engineer,Networking,Hyderabad,0
+ATIND0177,Prakash Muduli,Network Engineer,Networking,Hyderabad,0
+ATIND0178,Anantha Kumar Kukunuri Naga Venkata Durga,Network Engineer,Networking,Hyderabad,0
+ATIND0180,Harshavardhan Khareedu,Network Engineer,Networking,Hyderabad,0
+ATIND0183,Akshay Malik,Network Engineer,Networking,Hyderabad,0
+ATIND0184,Sivabalan Naganathan,Network Engineer,Networking,Hyderabad,0
+ATIND0189,Thanuj Kumar,Network Engineer,Networking,Hyderabad,0
+ATIND0193,Abhishek Bingi,Network Engineer,Networking,Hyderabad,0
+ATIND0194,Tharun Reddy Vatti,Network Engineer,Networking,Hyderabad,0
+ATIND0202,Maneesha Angirekula,Network Engineer,Networking,Hyderabad,0
+ATIND0209,Shaik Abdul Nawaz,Linux Administrator,Software,Hyderabad,0
