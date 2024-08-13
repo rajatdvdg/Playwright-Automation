@@ -1,5 +1,8 @@
+const { expect } = require('@playwright/test');
 const fs = require('fs');
 const config = require('../config/test-config');
+const globalConfig = require('.././playwright.config');
+const { Utils } = require('../utils/utils');
 
 class Dashboard{
     constructor(page)   {
@@ -11,6 +14,9 @@ class Dashboard{
         this.fileType = 'text=File';
         this.crawlerType = 'text=Crawler';
         this.youtubeType = 'text=Youtube';
+        this.gitHubType = 'text=GitHub';
+        this.restApiType = 'text=REST API';
+        this.sitemapType = 'text=Sitemap';
         this.inputContent = '#content';
         this.createButton = 'button[type="submit"]';
         this.inputFile = '#file';
@@ -19,6 +25,19 @@ class Dashboard{
 
     async navigate() {
         await this.page.click(this.createNewBot);
+        await expect(this.page).toHaveURL(globalConfig.use.baseURL + config.createNewChatBotUrl);
+    }
+
+    async createAndVerifyBot(page, botType) {
+        const utils = new Utils();
+        const dashboard = new Dashboard(page);
+        await dashboard.navigate();
+        const newBotUrl = await dashboard.createBot(botType);
+        const botIdUrl = await utils.extractBotUrl(newBotUrl);
+        await expect(page).toHaveURL(globalConfig.use.baseURL + botIdUrl);
+        if(botType != '')
+            await dashboard.verifyBotCreation();
+        return botIdUrl;
     }
 
     async verifyBotCreation() {
@@ -29,6 +48,11 @@ class Dashboard{
     async createBot(botType) {
         let fileInput = null;
         switch(botType) {
+
+            case '':
+                await this.page.click(this.createButton);
+                break;
+
             case 'webpage':
                 await this.page.click(this.webpageType);
                 await this.page.fill(this.inputContent, config.webpageUrl);
@@ -74,8 +98,30 @@ class Dashboard{
                 await this.page.fill(this.inputContent, config.youtubeUrl);
                 await this.page.click(this.createButton);
                 break;
-        }
 
+            case 'github':
+                await this.page.click(this.gitHubType);
+                await this.page.fill(this.inputContent, config.gitHubUrl);
+                await this.page.click(this.createButton);
+                break;
+
+            case 'restApi':
+                await this.page.click(this.restApiType);
+                await this.page.fill(this.inputContent, config.restApiEndpoint);
+                await this.page.click(this.createButton);
+                break;
+
+            case 'sitemap':
+                await this.page.click(this.sitemapType);
+                await this.page.fill(this.inputContent, config.sitemapUrl);
+                await this.page.click(this.createButton);
+                break;
+
+            case 'default':
+                throw new Error('Unknown login condition');
+        }
+        await this.page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
+        return this.page.url();
     }
 }
 

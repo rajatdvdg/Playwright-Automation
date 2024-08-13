@@ -5,9 +5,36 @@ const { Dashboard } = require('../../page-objects/dashboard.page');
 const config = require('../../config/test-config');
 const globalConfig = require('../../playwright.config');
 
+const botTypes = ['', 'webpage', 'text', 'pdf', 'docx', 'csv', 'crawler', 'youtube', 'github', 'restApi', 'sitemap'];
 
 test.describe('Create ChatBot tests', () => {
   
+  test.beforeEach(async ({ page }) => {
+    const utils = new Utils(page);
+    page = await utils.setupPage(page);
+    await expect(page.getByRole('alert')).toContainText('Success');
+    await expect(page.getByRole('alert')).toContainText('Login successful');
+    await page.click(utils.closeAlert);
+  });
+  
+  test.afterEach(async ({ page }) => {
+    const chat = new Chat(page);
+    await page.click(chat.navBarSettings);
+    await chat.deleteBot(page);
+  });
+  
+  for (const botType of botTypes) {
+    const testTitle = botType ? `should be able to create a ${botType} bot` : 'should be able to create a bot without any data source';
+    test(testTitle, async ({page}) => {
+      const dashboard = new Dashboard(page);
+      const botIdUrl = await dashboard.createAndVerifyBot(page, botType);
+      console.log('New Bot Url: ', botIdUrl);
+    });
+  }
+}); 
+
+test.describe('Adding Datasources tests', () => {
+
   test.beforeEach(async ({ page }) => {
     const utils = new Utils(page);
     page = await utils.setupPage(page);
@@ -15,72 +42,29 @@ test.describe('Create ChatBot tests', () => {
   
   test.afterEach(async ({ page }) => {
     const chat = new Chat(page);
-    await page.locator(chat.settings).click();
+    await page.locator(chat.navBarSettings).click();
     await chat.deleteBot(page);
   });
-  
-  test('should be able to create Webpage Bot', async ({page}) => {
-    const dashboard = new Dashboard(page);
-    await dashboard.navigate();
-    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
-    await dashboard.createBot('webpage');
-    await dashboard.verifyBotCreation();
-    //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
-  });
 
-  test('should be able to create Text Bot', async ({page}) => {
+  test('Add Webpage Datasource', async ({ page }) => {
+    const chat = new Chat(page);
     const dashboard = new Dashboard(page);
-    await dashboard.navigate();
-    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
-    await dashboard.createBot('text');
-    await dashboard.verifyBotCreation();
-    //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
-  });
+    const utils = new Utils(page);
+    const botIdUrl = await dashboard.createAndVerifyBot(page, 'webpage');
+    const dataSourcesUrl = globalConfig.use.baseURL + botIdUrl + config.dataSources;
+    await page.click(chat.navBarDataSources);
+    await expect(page).toHaveURL(dataSourcesUrl); 
+    await page.click(chat.addDataSource);
+    await page.click(dashboard.textType);
+    await page.fill(dashboard.inputContent, 'abcd');
+    await page.click(dashboard.createButton);
 
-  test('should be able to create PDF Bot', async ({page}) => {
-    const dashboard = new Dashboard(page);
-    await dashboard.navigate();
-    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
-    await dashboard.createBot('pdf');
-    await dashboard.verifyBotCreation();
-    //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
-  });
+    await expect(page.locator('tbody')).toContainText('Website');
+    await expect(page.locator('tbody')).toContainText('Text');
+    await expect(page.locator('tbody')).toContainText('abcd');
 
-  test('should be able to create docx Bot', async ({page}) => {
-    const dashboard = new Dashboard(page);
-    await dashboard.navigate();
-    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
-    await dashboard.createBot('docx');
-    await dashboard.verifyBotCreation();
-    //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
-  });
-  
-  test('should be able to create csv Bot', async ({page}) => {
-    const dashboard = new Dashboard(page);
-    await dashboard.navigate();
-    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
-    await dashboard.createBot('csv');
-    await dashboard.verifyBotCreation();
-    //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
-  });
-
-  test('should be able to create crawler Bot', async ({page}) => {
-    const dashboard = new Dashboard(page);
-    await dashboard.navigate();
-    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
-    await dashboard.createBot('crawler');
-    await dashboard.verifyBotCreation();
-    //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });   
-  });
-
-  test('should be able to create youtube Bot', async ({page}) => {
-    const dashboard = new Dashboard(page);
-    await dashboard.navigate();
-    await expect(page).toHaveURL(globalConfig.use.baseURL+config.newChatBotUrl);
-    await dashboard.createBot('youtube');
-    await dashboard.verifyBotCreation();
-    //await page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });   
-  });
-  
-
-});
+    await expect(page.getByRole('alert')).toContainText('Success');
+    await expect(page.getByRole('alert')).toContainText('New Source added successfully.');
+    await page.click(utils.closeAlert);
+  })
+})
