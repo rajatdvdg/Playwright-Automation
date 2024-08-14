@@ -32,7 +32,9 @@ class Dashboard{
         const utils = new Utils();
         const dashboard = new Dashboard(page);
         await dashboard.navigate();
-        const newBotUrl = await dashboard.createBot(botType);
+        await dashboard.createBot(botType);
+        await this.page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
+        const newBotUrl = this.page.url();
         const botIdUrl = await utils.extractBotUrl(newBotUrl);
         await expect(page).toHaveURL(globalConfig.use.baseURL + botIdUrl);
         if(botType != '')
@@ -46,6 +48,7 @@ class Dashboard{
     }
 
     async createBot(botType) {
+
         let fileInput = null;
         switch(botType) {
 
@@ -120,8 +123,6 @@ class Dashboard{
             case 'default':
                 throw new Error('Unknown login condition');
         }
-        await this.page.waitForSelector('textarea[placeholder="Type a message..."]', { state: 'visible', timeout: 30000 });
-        return this.page.url();
     }
 }
 

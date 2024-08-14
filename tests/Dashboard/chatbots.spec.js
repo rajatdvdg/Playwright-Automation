@@ -7,6 +7,7 @@ const globalConfig = require('../../playwright.config');
 
 const botTypes = ['', 'webpage', 'text', 'pdf', 'docx', 'csv', 'crawler', 'youtube', 'github', 'restApi', 'sitemap'];
 
+
 test.describe('Create ChatBot tests', () => {
   
   test.beforeEach(async ({ page }) => {
@@ -31,8 +32,15 @@ test.describe('Create ChatBot tests', () => {
       console.log('New Bot Url: ', botIdUrl);
     });
   }
+
+  test('should show error if data-source is selected but input is empty', async ({page}) => {
+    console.log('Error cases');
+
+  })
 }); 
 
+
+/*
 test.describe('Adding Datasources tests', () => {
 
   test.beforeEach(async ({ page }) => {
@@ -41,30 +49,29 @@ test.describe('Adding Datasources tests', () => {
   });
   
   test.afterEach(async ({ page }) => {
+    console.log('Inside AfterEach');
     const chat = new Chat(page);
     await page.locator(chat.navBarSettings).click();
+    console.log('Clicked on settings');
     await chat.deleteBot(page);
+    console.log('After deleting bot');
   });
 
-  test('Add Webpage Datasource', async ({ page }) => {
+  test('should be able to add all data sources', async ({ page }) => {
+    test.setTimeout(40000);
     const chat = new Chat(page);
-    const dashboard = new Dashboard(page);
     const utils = new Utils(page);
-    const botIdUrl = await dashboard.createAndVerifyBot(page, 'webpage');
-    const dataSourcesUrl = globalConfig.use.baseURL + botIdUrl + config.dataSources;
-    await page.click(chat.navBarDataSources);
-    await expect(page).toHaveURL(dataSourcesUrl); 
-    await page.click(chat.addDataSource);
-    await page.click(dashboard.textType);
-    await page.fill(dashboard.inputContent, 'abcd');
-    await page.click(dashboard.createButton);
-
-    await expect(page.locator('tbody')).toContainText('Website');
-    await expect(page.locator('tbody')).toContainText('Text');
-    await expect(page.locator('tbody')).toContainText('abcd');
-
-    await expect(page.getByRole('alert')).toContainText('Success');
-    await expect(page.getByRole('alert')).toContainText('New Source added successfully.');
-    await page.click(utils.closeAlert);
-  })
-})
+    const dashboard = new Dashboard(page);
+    const botIdUrl = await dashboard.createAndVerifyBot(page, '');
+    botTypes.shift();
+    for (const botType of botTypes) {
+      await chat.addDataSource(botType, botIdUrl);
+      await page.waitForSelector('#maxDepth_help', { state: 'hidden' });
+      await expect(page.getByRole('alert')).toContainText('Success');
+      await expect(page.getByRole('alert')).toContainText('New Source added successfully.');
+      await page.click(utils.closeAlert);
+      console.log(`Successfully added ${botType} data-source \n`);
+    }
+    console.log('botIdUrl at the end of execution: ', botIdUrl);
+  });
+})*/

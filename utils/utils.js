@@ -13,6 +13,7 @@ class Utils{
     await page.goto('/');
     const loginPage = new Login(page);
     await loginPage.login(data.adminCredentials.username, data.adminCredentials.password);
+    this.page.click(this.closeAlert);
     return page;
   }
 
